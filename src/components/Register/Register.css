@@ -1,0 +1,134 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 396px;
+  margin: 0 auto;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.register__header {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29.05px;
+  color: #ffffff;
+  margin: 40px 0;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.register__label {
+  display: flex;
+  flex-direction: column;
+  color: #8b8b8b;
+  font-size: 10px;
+  line-height: 12.1px;
+}
+
+.register__label:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.register__input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #ffffff;
+  border: none;
+  border-bottom: 1px solid #8b8b8b;
+  background-color: inherit;
+  padding: 5px 0 10px;
+}
+
+.register__error {
+  max-width: 390px;
+  font-size: 10px;
+  line-height: 12.1px;
+  color: #ee3465;
+  margin: 7px 0 4px 0;
+}
+
+.register__input:focus {
+  border-bottom-color: #4285f4;
+  outline: none;
+}
+
+.register__button {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  height: 45px;
+  border-radius: 3px;
+  padding: 0;
+  margin-top: 150px;
+  background: #4285f4;
+  border: none;
+  cursor: pointer;
+}
+
+.register__button:hover {
+  opacity: 0.7;
+}
+
+.register__question {
+  font-size: 14px;
+  line-height: 16.94px;
+  text-align: center;
+  margin-top: 15px;
+  padding: 0;
+  color: rgba(139, 139, 139, 1);
+}
+
+.register__link {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(66, 133, 244, 1);
+}
+
+.register__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .register {
+    padding: 232px 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .register__form {
+    text-align: center;
+  }
+
+  .register__label {
+    text-align: left;
+  }
+
+  .register {
+    width: 260px;
+    padding: 58px 0 30px 0;
+  }
+
+  .register__header {
+    text-align: center;
+    margin: 46px 0 80px;
+  }
+
+  .register__button {
+    margin-top: 240px;
+    font-size: 12px;
+  }
+
+  .register__question {
+    font-size: 12px;
+  }
+}

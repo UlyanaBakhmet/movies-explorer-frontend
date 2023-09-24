@@ -1,0 +1,47 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1140px) {
+  .navigation {
+    display: none;
+  }
+}
+
+.navigation__link {
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navigation__link:hover {
+  opacity: 0.7;
+}
+
+.navigation__link:not(:last-child) {
+  margin-right: 20px;
+}
+
+.navigation__link_active {
+  font-weight: 500;
+}
+
+.header__account {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 50px;
+}
+
+.header__account:hover {
+  opacity: 0.7;
+}
+
+.header__account-text {
+  margin: 0 14px 0 0;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+}

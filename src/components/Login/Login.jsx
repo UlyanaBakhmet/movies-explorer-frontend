@@ -1,56 +1,55 @@
-import { Link } from "react-router-dom";
-import Logo from "../Logo/Logo";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthPage from "../AuthPage/AuthPage";
+import AuthInput from "../AuthInput/AuthInput";
 import "./Login.css";
 
-export default function Login() {
+const Login = ({ toggleMenu }) => {
+  const navigate = useNavigate();
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    navigate("/movies", { replace: true });
+    toggleMenu();
+  }
+
   return (
     <section className="login">
-      <form className="login__form">
-        <div className="login__container">
-          <Logo />
-          <h1 className="login__header">Рады видеть!</h1>
-          <label className="login__label" htmlFor="email">
-            E-mail
-            <input
-              className="login__input"
-              type="email"
-              id="email"
-              name="email"
-              minLength="2"
-              maxLength="30"
-              required
-              placeholder="kotic@yandex.ru"
-              autoComplete="off"
-            />
-          </label>
-
-          <label className="login__label" htmlFor="password">
-            Пароль
-            <input
-              className="login__input"
-              type="password"
-              name="password"
-              id="password"
-              minLength="2"
-              maxLength="30"
-              required
-              placeholder="******"
-              autoComplete="off"
-            />
-          </label>
-        </div>
-        <div className="login__container">
-          <button className="login__button" type="submit">
-            Войти
-          </button>
-          <p className="login__question">
-            Ещё не зарегистрированы?{" "}
-            <Link to={"/signup"} className="login__link">
-              Регистрация
-            </Link>
-          </p>
-        </div>
-      </form>
+      <AuthPage
+        title="Рады видеть!"
+        name="login"
+        buttonText="Войти"
+        onSubmit={handleSubmit}
+      >
+        <AuthInput
+          labelClassName="auth-page__label"
+          labelText="E-mail"
+          name="email"
+          id="email"
+          type="email"
+          inputClassName="auth-page__input"
+          placeholder="pochta@yandex.ru"
+        />
+        <AuthInput
+          labelClassName="auth-page__label"
+          labelText="Пароль"
+          name="password"
+          id="password"
+          type="password"
+          inputClassName="auth-page__input"
+          placeholder=""
+        />
+      </AuthPage>
+      <div className="login__registration">
+        <p className="login__registration-paragraph">
+          Ещё не зарегистрированы?
+        </p>
+        <Link to="/signup" className="login__registration-button link">
+          Регистрация
+        </Link>
+      </div>
     </section>
   );
-}
+};
+
+export default Login;

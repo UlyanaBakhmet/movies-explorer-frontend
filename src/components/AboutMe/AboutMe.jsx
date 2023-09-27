@@ -1,3 +1,4 @@
+import React from "react";
 import photo from "../../images/avatar.jpg";
 import "./AboutMe.css";
 
@@ -8,7 +9,7 @@ export default function AboutMe() {
       <div className="about-me__container">
         <div className="about-me__text">
           <h3 className="about-me__name">Ульяна</h3>
-          <p className="about-me__information">Разработчик, 31 год</p>
+          <p className="about-me__information">Фронтенд-разработчик, 31 год</p>
           <p className="about-me__story">
             Я живу в Санкт-Петербурге, закончила математический факультет
             ПетрГУ. По специальности не работала, была занята совершенно в

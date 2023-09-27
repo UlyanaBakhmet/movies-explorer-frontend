@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
@@ -25,12 +26,17 @@ export default function MoviesCardList() {
           <MoviesCard />
           <MoviesCard />
           <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
         </ul>
       )}
 
       {!isLoading ? (
-        <div className="button-more-cards__container">
-          <button className="button-more-cards" type="button">
+        <div className="more-button-cover">
+          <button className="more-button" type="button">
             Ещё
           </button>
         </div>

@@ -1,4 +1,5 @@
-import promoImage from "../../images/promoImage.png";
+import React from "react";
+import promoImage from "../../images/promoImage.svg";
 import "./Promo.css";
 
 export default function Promo() {

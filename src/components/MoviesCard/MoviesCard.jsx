@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import movieImg from "../../images/movieImg.jpg";
@@ -16,7 +17,7 @@ export default function MoviesCard() {
       <img
         className="movies-card__image"
         src={movieImg}
-        alt={`Постер фильма`}
+        alt="Постер фильма"
       />
       {pathname === "/saved-movies" ? (
         <button

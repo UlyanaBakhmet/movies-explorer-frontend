@@ -8,7 +8,7 @@
 .about-me__container {
   display: flex;
   justify-content: space-between;
-  padding-top: 66px;
+  padding-top: 60px;
 }
 
 .about-me__name {
@@ -37,7 +37,8 @@
 .about-me__story {
   max-width: 600px;
   margin: 0;
-  padding-bottom: 99px;
+  padding-bottom: 90px;
+  padding-top: 7px;
   font-style: normal;
   font-weight: 400;
   color: #ffffff;
@@ -79,7 +80,7 @@
 
   .about-me__container {
     align-items: center;
-    padding-top: 62px;
+    padding-top: 66px;
   }
 
   .about-me__text {
@@ -92,8 +93,8 @@
   }
 
   .about-me__name {
-    padding: 40px 0 20px 0;
-    font-size: 30px;
+    padding: 0 0 20px 0;
+    font-size: 46px;
     line-height: 37px;
   }
 
@@ -103,7 +104,6 @@
   }
 
   .about-me__story {
-    padding-bottom: 40px;
     font-size: 11px;
     line-height: 16px;
   }
@@ -114,7 +114,16 @@
     }
 
     .about-me {
-      padding: 70px 20px;
+      padding: 70px 15px;
+    }
+
+    .about-me__name {
+      font-size: 30px;
+      padding-top: 40px;
+    }
+
+    .about-me__story{
+      padding: 3px;
     }
   }
 }

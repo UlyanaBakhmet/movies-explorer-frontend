@@ -1,3 +1,4 @@
+import React from "react";
 import "./AboutProject.css";
 
 export default function AboutProject() {
@@ -26,12 +27,12 @@ export default function AboutProject() {
       </div>
       <div className="about-project__time">
         <div className="about-project__time-backend">
-          <div className="about-project__time-week-one">1 неделя</div>
-          <div className="about-project__time-course-name">Back-end</div>
+          <p className="about-project__time-week-one">1 неделя</p>
+          <p className="about-project__time-course-name">Back-end</p>
         </div>
         <div className="about-project__time-frontend">
-          <div className="about-project__time-week-four">4 недели</div>
-          <div className="about-project__time-course-name">Front-end</div>
+          <p className="about-project__time-week-four">4 недели</p>
+          <p className="about-project__time-course-name">Front-end</p>
         </div>
       </div>
     </section>

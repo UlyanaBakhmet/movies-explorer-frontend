@@ -76,7 +76,11 @@
 
 @media screen and (max-width: 768px) {
   .about-project {
-    padding: 80px 50px;
+    padding: 90px 50px 90px 50px;
+  }
+
+  .about-project__container {
+    padding-bottom: 102px;
   }
 
   .about-project__paragraph {
@@ -131,6 +135,10 @@
     font-size: 11px;
     line-height: 16px;
     padding-bottom: 15px;
+  }
+
+  .about-project__time-backend {
+    width: 100px;
   }
 
   .about-project__time-week-one {

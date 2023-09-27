@@ -55,7 +55,7 @@
 
 @media screen and (max-width: 550px) {
   .portfolio {
-    padding: 0 18px 107px 18px;
+    padding: 0 18px 100px 18px;
   }
 
   .portfolio__header {
@@ -66,5 +66,9 @@
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.72px;
+  }
+
+  .portfolio__item {
+    padding: 0 0 42px 0;
   }
 }

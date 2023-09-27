@@ -1,48 +1,75 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
+import AuthInput from "../AuthInput/AuthInput";
 
-export default function Profile() {
+export default function Profile({ toggleMenu }) {
+  const [editProfile, setEditProfile] = useState(false);
+  const navigate = useNavigate();
+
+  function logOut() {
+    toggleMenu();
+    navigate("/", { replace: true });
+  }
+
   return (
     <section className="profile">
-      <h2 className="profile__header">Привет, Ульяна!</h2>
-      <form className="profile__form" noValidate>
-        <label className="profile__input-container" htmlFor="name">
-          <span className="profile__input-paragraph">Имя</span>
-          <input
-            className="profile__input"
-            name="name"
+      <h1 className="profile__header">Привет, Виталий!</h1>
+      <form className="profile__form">
+        <fieldset className="profile__fieldset">
+          <AuthInput
+            labelClassName="profile__label"
+            labelText="Имя"
+            type="text"
             id="name"
-            type="name"
-            autoComplete="off"
+            inputClassName="profile__input"
             minLength="2"
             maxLength="30"
-            defaultValue="Ульяна"
             placeholder="Ваше имя"
-            required
+            defaultValue="Виталий"
           />
-        </label>
-        <label className="profile__input-container" htmlFor="email">
-          <span className="profile__input-paragraph">E-mail</span>
-          <input
-            className="profile__input"
-            name="email"
+        </fieldset>
+        <fieldset className="profile__fieldset">
+          <AuthInput
+            labelClassName="profile__label"
+            labelText="E-mail"
+            type="text"
             id="email"
-            type="email"
-            autoComplete="off"
+            inputClassName="profile__input"
             minLength="2"
             maxLength="30"
-            defaultValue="kotic@yandex.ru"
             placeholder="Ваш e-mail"
-            required
+            defaultValue="pochta@yandex.ru"
           />
-        </label>
+        </fieldset>
+        {editProfile ? (
+          <button
+            className="profile__button profile__button_type_save"
+            type="submit"
+            onClick={() => setEditProfile(false)}
+          >
+            Сохранить
+          </button>
+        ) : (
+          <>
+            <button
+              className="profile__button profile__button_type_edit"
+              type="button"
+              onClick={() => setEditProfile(true)}
+            >
+              Редактировать
+            </button>
+            <button
+              className="profile__button profile__button_type_logout"
+              type="button"
+              onClick={logOut}
+            >
+              Выйти из аккаунта
+            </button>
+          </>
+        )}
       </form>
-      <div className="profile__buttons">
-        <button className="profile__edit">Редактировать</button>
-        <Link to="/signin" className="profile__exit">
-          Выйти из аккаунта
-        </Link>
-      </div>
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import React from "react";
 import Promo from "../Promo/Promo";
 import AboutProject from "../AboutProject/AboutProject";
@@ -9,6 +10,10 @@ import "./Main.css";
 export default function Main() {
   return (
     <>
+    <Helmet>
+        <title>Movies Explorer.</title>
+      </Helmet>
+
       <Promo />
       <AboutProject />
       <Techs />

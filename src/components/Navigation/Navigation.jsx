@@ -14,7 +14,7 @@ export default function Navigation({
   return (
     <>
       {isLoggedIn ? (
-        <navigation className={toggleMenu ? "navigation__overlay" : ""}>
+        <nav>
           <div
             className={
               location.pathname === "/"
@@ -62,7 +62,7 @@ export default function Navigation({
                 <p
                   className={
                     location.pathname === "/profile"
-                      ? "navigation__profile-text navigation__list-element_active"
+                      ? "navigation__profile-text"
                       : "navigation__profile-text"
                   }
                 >
@@ -84,10 +84,10 @@ export default function Navigation({
               </div>
             </Link>
           </div>
-        </navigation>
+         </nav>
       ) : (
         <>
-          <navigation className="navigation" id="menu">
+          <nav className="navigation" id="menu">
             <Link className="navigation__link link" to="/signup">
               Регистрация
             </Link>
@@ -98,7 +98,7 @@ export default function Navigation({
                 type="button"
               />
             </Link>
-          </navigation>
+          </nav>
         </>
       )}
     </>

@@ -43,14 +43,14 @@ export default function Header ({ isLoggedIn }) {
             <img
               src={closeIcon}
               alt="Закрыть всплывающее меню"
-              className="navigation__menu-icon navigation__menu-icon_type_close"
+              className="header__nav-menu-icon header__nav-menu-icon_type_close"
               onClick={handleMobileNavClose}
             />
           ) : (
             <img
               src={burgerMenu}
               alt="Открыть всплывающее меню"
-              className="navigation__menu-icon navigation__menu-icon_type_burger"
+              className="header__nav-menu-icon header__nav-menu-icon_type_burger"
               onClick={handleMobileNavOpen}
             />
           )}

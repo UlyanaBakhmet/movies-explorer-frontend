@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthPage from "../AuthPage/AuthPage";
@@ -15,6 +16,11 @@ const Login = ({ toggleMenu }) => {
 
   return (
     <section className="login">
+
+      <Helmet>
+        <title>Вход</title>
+      </Helmet>
+
       <AuthPage
         title="Рады видеть!"
         name="login"
@@ -28,6 +34,7 @@ const Login = ({ toggleMenu }) => {
           id="email"
           type="email"
           inputClassName="auth-page__input"
+          required
           placeholder="pochta@yandex.ru"
         />
         <AuthInput
@@ -37,7 +44,10 @@ const Login = ({ toggleMenu }) => {
           id="password"
           type="password"
           inputClassName="auth-page__input"
-          placeholder=""
+          minLength="2"
+          maxLength="30"
+          required
+          placeholder="Введите ваш пароль"
         />
       </AuthPage>
       <div className="login__registration">

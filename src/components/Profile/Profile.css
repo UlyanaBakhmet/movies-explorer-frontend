@@ -59,13 +59,17 @@
   width: 50%;
   text-align: right;
   border: none;
-  background-color: transparent;
+  background-color: unset;
   box-sizing: border-box;
-  /* cursor: pointer; */
+  outline: none;
 }
 
 .profile__input:focus {
-  color: #4285f4;
+  font-size: 12px;
+}
+
+.profile__fieldset:has(.profile__input:focus) > .profile__label {
+  font-size: 12px;
 }
 
 .profile__button {
@@ -124,6 +128,10 @@
 @media (max-width: 768px) {
   .profile {
     padding: 236px 0 269px 0;
+  }
+
+  .profile__fieldset:not(:last-of-type) {
+    padding-bottom: 15px;
   }
 
   .profile__form {

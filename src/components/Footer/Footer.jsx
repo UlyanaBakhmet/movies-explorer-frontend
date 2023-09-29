@@ -4,32 +4,34 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__container-paragraph">
-        <p className="footer__title">
+        <p className="footer__text">
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
-        <div className="footer__container-links">
-          <p className="footer__data">&copy; {new Date().getFullYear()}</p>
-          <nav className="footer__nav">
-            <a
+      <div className="footer__container">
+          <p className="footer__copyright">&copy; {new Date().getFullYear()}</p>
+          <ul className='footer__links'>
+            <li
               className="footer__link"
-              href="https://practicum.yandex.ru/"
+              >
+              <a href="https://practicum.yandex.ru/"
               target="_blank"
               rel="noreferrer"
             >
               Яндекс.Практикум
-            </a>
-            <a
+              </a>
+            </li>
+            <li
               className="footer__link"
-              href="https://github.com/UlyanaBakhmet"
+              >
+              <a href="https://github.com/UlyanaBakhmet"
               target="_blank"
               rel="noreferrer"
             >
               Github
-            </a>
-          </nav>
+              </a>
+            </li>
+            </ul>
         </div>
-      </div>
     </footer>
   );
 }

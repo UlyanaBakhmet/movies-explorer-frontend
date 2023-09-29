@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthPage from "../AuthPage/AuthPage";
@@ -14,6 +15,11 @@ export default function Register() {
 
   return (
     <section className="register">
+
+      <Helmet>
+        <title>Регистрация</title>
+      </Helmet>
+
       <AuthPage
         title="Добро пожаловать!"
         name="register"
@@ -21,30 +27,37 @@ export default function Register() {
         buttonText="Зарегистрироваться"
       >
         <AuthInput
-          labelClassName="auth-page__label"
+          labelClassName="register__auth-page-label"
           labelText="Имя"
           type="text"
           name="name"
           id="name"
-          inputClassName="auth-page__input"
+          inputClassName="register__auth-page-input"
+          minLength="2"
+          maxLength="30"
+          required
           placeholder="Виталий"
         />
         <AuthInput
-          labelClassName="auth-page__label"
+          labelClassName="register__auth-page-label"
           labelText="E-mail"
-          type="text"
+          type="email"
           name="email"
           id="email"
-          inputClassName="auth-page__input"
+          inputClassName="register__auth-page-input"
+          required
           placeholder="pochta@yandex.ru"
         />
         <AuthInput
-          labelClassName="auth-page__label"
+          labelClassName="register__auth-page-label"
           labelText="Пароль"
-          type="text"
+          type="password"
           name="password"
           id="password"
-          inputClassName="auth-page__input"
+          inputClassName="register__auth-page-input"
+          minLength="2"
+          maxLength="30"
+          required
           placeholder="***************"
         />
       </AuthPage>

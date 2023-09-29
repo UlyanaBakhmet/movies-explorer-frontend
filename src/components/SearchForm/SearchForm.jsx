@@ -14,7 +14,7 @@ export default function SearchForm() {
             minLength="2"
             required
           />
-          <button className="search__button">Поиск</button>
+          <button className="search__button" type="submit">Поиск</button>
         </form>
         <FilterCheckbox />
       </div>

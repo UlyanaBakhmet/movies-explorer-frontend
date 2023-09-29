@@ -33,6 +33,11 @@
   line-height: 18px;
 }
 
+.filter-checkbox__text:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
 .filter-checkbox__switch:before {
   position: absolute;
   content: "";

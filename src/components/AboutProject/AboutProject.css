@@ -80,7 +80,7 @@
   }
 
   .about-project__container {
-    padding-bottom: 102px;
+    padding-bottom: 95px;
   }
 
   .about-project__paragraph {
@@ -117,12 +117,12 @@
 
 @media screen and (max-width: 550px) {
   .about-project {
-    padding: 75px 20px;
+    padding: 71px 20px;
   }
 
   .about-project__container {
     flex-direction: column;
-    padding: 60px 0;
+    padding: 65px 0 49px;
   }
 
   .about-project__header {

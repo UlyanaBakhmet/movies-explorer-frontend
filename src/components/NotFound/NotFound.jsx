@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./NotFound.css";
@@ -7,6 +8,9 @@ export default function PageNotFound() {
   const handleBack = () => navigate(-1);
   return (
     <section className="notfound">
+      <Helmet>
+        <title>Страница не найдена</title>
+      </Helmet>
       <div className="notfound__block">
         <h1 className="notfound__title">404</h1>
         <p className="notfound__paragraph">Страница не найдена</p>

@@ -18,7 +18,7 @@ export default function MoviesCardList() {
       {isLoading ? (
         <Preloader />
       ) : (
-        <ul className="movies-card__list">
+        <ul className="cardlist">
           <MoviesCard />
           <MoviesCard />
           <MoviesCard />

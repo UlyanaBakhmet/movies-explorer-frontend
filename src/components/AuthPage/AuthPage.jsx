@@ -11,6 +11,7 @@ export default function AuthPage({
   buttonText,
 }) {
   return (
+    <div className="auth-page">
     <div className="auth-page__container">
       <Logo />
       <h1 className="auth-page__title">{title}</h1>
@@ -18,11 +19,11 @@ export default function AuthPage({
         className="auth-page__form"
         name={name}
         onSubmit={onSubmit}
-        noValidate
       >
         <fieldset className="auth-page__fieldset">{children}</fieldset>
         <Button className="auth-page__button" type="submit" text={buttonText} />
       </form>
+    </div>
     </div>
   );
 }

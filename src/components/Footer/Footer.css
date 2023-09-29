@@ -1,91 +1,84 @@
 .footer {
-  box-sizing: border-box;
-}
-
-.footer__title {
-  margin: 0;
-  padding: 20px 0 20px 0;
-  text-align: center;
-  color: #8b8b8b;
-}
-
-.footer__container-paragraph {
-  box-sizing: border-box;
-  font-size: 13px;
-  max-width: 1280px;
-  margin: auto;
-  padding: 0 70px;
-}
-
-.footer__nav {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  padding: 79px 70px 0 70px;
 }
 
-.footer__container-links {
+.footer__text {
+  font-size: 13px;
+  line-height: normal;
+  text-align: center;
+  color:#8B8B8B;
+  margin-bottom: 20px;
+}
+
+.footer__container {
   display: flex;
   justify-content: space-between;
-  justify-items: center;
-  padding: 20px 0;
+  font-size: 13px;
+  color: #FFFFFF;
+  line-height: normal;
   border-top: 1px solid #424242;
 }
 
-.footer__data {
-  margin: 0;
+.footer__copyright {
+  padding: 20px 0;
 }
 
-.footer__link {
-  color: white;
-  text-decoration: none;
+.footer__links {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer__link:not(:last-child) {
+  margin-right: 20px;
 }
 
 .footer__link:hover {
   opacity: 0.7;
+  transition: 0.3s;
 }
 
-@media screen and (max-width: 768px) {
-  .footer__container {
-    padding: 0 30px;
+@media (max-width: 768px) {
+  .footer {
+    padding: 80px 30px 0 30px;
   }
 }
 
-@media screen and (max-width: 550px) {
-  .footer__container-paragraph {
-    padding: 0 14px;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .footer__container-paragraph {
-    padding: 0 10px;
+@media (max-width: 550px) {
+  .footer {
+    padding: 78px 10px 0 10px;
   }
 
-  .footer__title {
+  .footer__text {
     font-size: 12px;
-    line-height: 14.52px;
+    line-height: 125%;
+    margin-bottom: 21px;
   }
 
-  .footer__container-links {
-    display: flex;
-    flex-wrap: wrap;
+  .footer__container {
     flex-direction: column-reverse;
   }
 
+  .footer__links {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
   .footer__link {
-    width: 100%;
-  }
-
-  .footer__nav {
-    text-align: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer__data {
     font-size: 12px;
-    line-height: 14.52px;
+    line-height: 125%;
+  }
+
+  .footer__link:not(:last-child) {
+    margin: 0 0 13px 0;
+  }
+
+  .footer__copyright {
     text-align: center;
-    color: #8b8b8b;
+    font-size: 12px;
+    line-height: 125%;
+    padding: 30px 0 20px 0;
   }
 }

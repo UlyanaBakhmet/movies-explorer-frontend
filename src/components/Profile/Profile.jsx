@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,14 @@ export default function Profile({ toggleMenu }) {
   const [editProfile, setEditProfile] = useState(false);
   const navigate = useNavigate();
 
+  function handleEditProfile () {
+    setEditProfile(true);
+  }
+
+ function handleSavingChanges () {
+    setEditProfile(true);
+  }
+
   function logOut() {
     toggleMenu();
     navigate("/", { replace: true });
@@ -15,6 +24,9 @@ export default function Profile({ toggleMenu }) {
 
   return (
     <section className="profile">
+      <Helmet>
+        <title>Аккаунт</title>
+      </Helmet>
       <h1 className="profile__header">Привет, Виталий!</h1>
       <form className="profile__form">
         <fieldset className="profile__fieldset">
@@ -26,6 +38,7 @@ export default function Profile({ toggleMenu }) {
             inputClassName="profile__input"
             minLength="2"
             maxLength="30"
+            required
             placeholder="Ваше имя"
             defaultValue="Виталий"
           />
@@ -39,6 +52,7 @@ export default function Profile({ toggleMenu }) {
             inputClassName="profile__input"
             minLength="2"
             maxLength="30"
+            required
             placeholder="Ваш e-mail"
             defaultValue="pochta@yandex.ru"
           />
@@ -47,7 +61,7 @@ export default function Profile({ toggleMenu }) {
           <button
             className="profile__button profile__button_type_save"
             type="submit"
-            onClick={() => setEditProfile(false)}
+            onClick={handleSavingChanges}
           >
             Сохранить
           </button>
@@ -56,7 +70,7 @@ export default function Profile({ toggleMenu }) {
             <button
               className="profile__button profile__button_type_edit"
               type="button"
-              onClick={() => setEditProfile(true)}
+              onClick={handleEditProfile}
             >
               Редактировать
             </button>

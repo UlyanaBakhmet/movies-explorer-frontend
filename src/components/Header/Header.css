@@ -16,7 +16,7 @@
   background: #073042;
 }
 
-.navigation__menu-icon {
+.header__nav-menu-icon {
   position: absolute;
   display: none;
   right: 30px;
@@ -24,12 +24,12 @@
   z-index: 20;
 }
 
-.navigation__menu-icon:hover {
+.header__nav-menu-icon:hover {
   opacity: 0.7;
   transition: 0.3s;
 }
 
-.navigation__menu-icon_type_close {
+.header__nav-menu-icon_type_close {
   position: fixed;
   right: 22px;
   top: 22px;
@@ -40,7 +40,7 @@
     padding: 0 30px;
   }
 
-  .navigation__menu-icon {
+  .header__nav-menu-icon {
     display: block;
   }
 }
@@ -50,13 +50,13 @@
     padding: 0 15px;
   }
 
-  .navigation__menu-icon {
+  .header__nav-menu-icon {
     right: 14px;
     width: 37px;
     height: 42px;
   }
 
-  .navigation__menu-icon_type_close {
+  .header__nav-menu-icon_type_close {
     position: fixed;
     width: 29px;
     height: 29px;

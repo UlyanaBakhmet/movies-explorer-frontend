@@ -1,0 +1,17 @@
+.section-header {
+  margin: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26.63px;
+  letter-spacing: -0.88px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #dadada;
+}
+
+@media screen and (max-width: 550px) {
+  .section-header {
+    font-size: 18px;
+    line-height: 21.78px;
+    padding-bottom: 23px;
+  }
+}

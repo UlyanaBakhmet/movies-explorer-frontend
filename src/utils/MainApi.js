@@ -35,7 +35,7 @@ class MainApi {
       }).then((res) => this._checkResult(res));
     }
   
-    getSavedMovies() {
+    getMovies() {
       const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/movies`, {
         method: "GET",
@@ -74,6 +74,6 @@ class MainApi {
   }
   
   export const mainApi = new MainApi({
-    baseUrl: "http://localhost:4000",
+    baseUrl: "http://localhost:3000",
     // baseUrl: "https://api.bakhmet-movies.nomoredomainsmonster.ru",
   });

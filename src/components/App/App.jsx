@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import mainApi from "../../utils/MainApi";
 import Header from "../Header/Header";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
@@ -13,6 +14,8 @@ import NotFound from "../NotFound/NotFound";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -29,6 +32,21 @@ export default function App() {
     setIsLoggedIn((prevState) => !prevState);
   }
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      mainApi
+        .getUserdata()
+        .then((userData) => {
+          setCurrentUser({
+            ...userData,
+            name: userData.name,
+            email: userData.email,
+          });
+        })
+        .catch((error) => console.log(`Error: ${error.status}`));
+    }
+  }, [isLoggedIn]);
+
   return (
     <div className="root">
       <div className="page">
@@ -42,7 +60,9 @@ export default function App() {
             <Route path="/saved-movies" element={<SavedMovies />} />
             <Route
               path="/profile"
-              element={<Profile toggleMenu={toggleMenu} />}
+              element={<Profile
+                setCurrentUser={setCurrentUser}
+                toggleMenu={toggleMenu} />}
             />
             <Route path="/*" element={<NotFound />} />
           </Routes>

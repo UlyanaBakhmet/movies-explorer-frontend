@@ -6,7 +6,7 @@ export default function MoviesCard({
   movie,
   isSavedMovies,
   handleToogleButton,
-  checkIsMovieSaved,
+  checkIsMovieSaved
 }) {
   const [isSaved, setIsSaved] = useState(false);
   const { pathname } = useLocation();
@@ -30,6 +30,7 @@ export default function MoviesCard({
   const handleToogleClick = (evt) => {
     handleToogleButton(evt, movie, setIsSaved, isSaved);
   };
+
 
   return (
     <li className="movies-card">

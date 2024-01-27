@@ -54,6 +54,10 @@
   position: relative;
 }
 
+.preloader_hidden {
+  display: none;
+}
+
 .preloader__round {
   width: 100px;
   height: 100px;

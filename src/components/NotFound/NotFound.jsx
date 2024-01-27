@@ -1,11 +1,11 @@
-import { Helmet } from 'react-helmet';
 import React from "react";
+import { Helmet } from 'react-helmet';
 import { useNavigate } from "react-router-dom";
 import "./NotFound.css";
 
 export default function PageNotFound() {
   const navigate = useNavigate();
-  const handleBack = () => navigate(-1);
+  const handleBack = () => navigate(-2);
   return (
     <section className="notfound">
       <Helmet>

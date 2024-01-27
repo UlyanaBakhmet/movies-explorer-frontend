@@ -84,7 +84,7 @@ export default function Navigation({
               </div>
             </Link>
           </div>
-         </nav>
+        </nav>
       ) : (
         <>
           <nav className="navigation" id="menu">

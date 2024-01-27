@@ -9,6 +9,20 @@
   margin: 0 auto;
 }
 
+.login__error {
+  display: block;
+  max-width: 396px;
+  font-size: 10px;
+  color: red;
+  line-height: 12px;
+ padding-bottom: 5px;
+  opacity: 0;
+}
+
+.login__error_active {
+  opacity: 1;
+}
+
 .login__registration {
   display: flex;
   flex-direction: row;

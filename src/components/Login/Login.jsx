@@ -1,22 +1,31 @@
-import { Helmet } from 'react-helmet';
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import AuthPage from "../AuthPage/AuthPage";
 import AuthInput from "../AuthInput/AuthInput";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { emailValidator } from "../../utils/validator";
 import "./Login.css";
 
-const Login = ({ toggleMenu }) => {
-  const navigate = useNavigate();
+export default function Login({ handleLogin }) {
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormAndValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    navigate("/movies", { replace: true });
-    toggleMenu();
+    handleLogin({
+      email: values.email,
+      password: values.password,
+    });
   }
 
   return (
     <section className="login">
-
       <Helmet>
         <title>Вход</title>
       </Helmet>
@@ -24,8 +33,9 @@ const Login = ({ toggleMenu }) => {
       <AuthPage
         title="Рады видеть!"
         name="login"
-        buttonText="Войти"
+        buttonText={"Войти"}
         onSubmit={handleSubmit}
+        isDisabled={!isValid ? true : ""}
       >
         <AuthInput
           labelClassName="auth-page__label"
@@ -36,7 +46,17 @@ const Login = ({ toggleMenu }) => {
           inputClassName="auth-page__input"
           required
           placeholder="pochta@yandex.ru"
+          value={values.email || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`login__error ${
+            isValid ? "" : "login__error login__error_active"
+          }`}
+        >
+          {emailValidator(values.email).error}
+        </span>
+
         <AuthInput
           labelClassName="auth-page__label"
           labelText="Пароль"
@@ -48,7 +68,16 @@ const Login = ({ toggleMenu }) => {
           maxLength="30"
           required
           placeholder="Введите ваш пароль"
+          value={values.password || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`login__error ${
+            isValid ? "" : "login__error login__error_active"
+          }`}
+        >
+          {errors.password}
+        </span>
       </AuthPage>
       <div className="login__registration">
         <p className="login__registration-paragraph">
@@ -60,6 +89,4 @@ const Login = ({ toggleMenu }) => {
       </div>
     </section>
   );
-};
-
-export default Login;
+}

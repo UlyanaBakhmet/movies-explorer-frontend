@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function AuthInput({
- labelClassName,
+  labelClassName,
   labelText,
   value,
   name,

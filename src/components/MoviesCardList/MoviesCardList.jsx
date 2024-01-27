@@ -1,48 +1,100 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
+import {
+  MAX_WIDTH,
+  MIN_WIDTH,
+  CARDS_12,
+  CARDS_8,
+  CARDS_5,
+  CARDS_3,
+  CARDS_2,
+  CARDS_1,
+} from "../../utils/constants";
 import "./MoviesCardList.css";
 
-export default function MoviesCardList() {
-  const [isLoading, setIsLoading] = useState(true);
+export default function MoviesCardList({
+  movies,
+  isSavedMovies,
+  savedMovies,
+  handleToogleButton,
+  checkIsMovieSaved,
+}) {
+  const [listMoviesOnDisplay, setListMoviesOnDisplay] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    handleChangeDisplayWidth();
+    window.addEventListener("resize", handleChangeDisplayWidth);
+
+    return () => {
+      window.removeEventListener("resize", handleChangeDisplayWidth);
+    };
   }, []);
 
-  return (
-    <>
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <ul className="cardlist">
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-          <MoviesCard />
-        </ul>
-      )}
+  function handleChangeDisplayWidth() {
+    if (window.innerWidth > MAX_WIDTH) {
+      setListMoviesOnDisplay(CARDS_12);
+    } else if (window.innerWidth > MIN_WIDTH && window.innerWidth < MAX_WIDTH) {
+      setListMoviesOnDisplay(CARDS_8);
+    } else {
+      setListMoviesOnDisplay(CARDS_5);
+    }
+  }
 
-      {!isLoading ? (
-        <div className="more-button-cover">
-          <button className="more-button" type="button">
+  function handleClickMoreButton() {
+    if (window.innerWidth > MAX_WIDTH) {
+      setListMoviesOnDisplay(listMoviesOnDisplay + CARDS_3);
+    } else if (window.innerWidth > MIN_WIDTH && window.innerWidth < MAX_WIDTH) {
+      setListMoviesOnDisplay(listMoviesOnDisplay + CARDS_2);
+    } else {
+      setListMoviesOnDisplay(listMoviesOnDisplay + CARDS_1);
+    }
+  }
+
+  return (
+    <section className="cardlist">
+      <div className="cardlist__elements">
+        {!isSavedMovies &&
+          (Array.isArray(movies) ? (
+            movies
+              .slice(0, listMoviesOnDisplay)
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.id}
+                  movie={movie}
+                  isSavedMovies={isSavedMovies}
+                  handleToogleButton={handleToogleButton}
+                  checkIsMovieSaved={checkIsMovieSaved}
+                />
+              ))
+          ) : (
+            <div className="cardlist__text">Ничего не найдено</div>
+          ))}
+        {isSavedMovies &&
+          (Array.isArray(savedMovies) ? (
+            savedMovies.map((savedMovie) => (
+              <MoviesCard
+                key={savedMovie._id}
+                movie={savedMovie}
+                isSavedMovies={isSavedMovies}
+                handleToogleButton={handleToogleButton}
+                checkIsMovieSaved={checkIsMovieSaved}
+              />
+            ))
+          ) : (
+            <div className="cardlist__text">Ничего не найдено</div>
+          ))}
+      </div>
+      {!isSavedMovies &&
+        movies.length > listMoviesOnDisplay &&
+        Array.isArray(movies) && (
+          <button
+            onClick={handleClickMoreButton}
+            className="cardlist__more-button"
+            type="button"
+          >
             Ещё
           </button>
-        </div>
-      ) : (
-        ""
-      )}
-    </>
+        )}
+    </section>
   );
 }

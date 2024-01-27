@@ -70,6 +70,17 @@
   transition: 0.3s;
 }
 
+.auth-page__button_disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
+.auth-page__button_disabled:hover {
+  cursor: auto;
+  background-color: #F8F8F8;
+  opacity: 1;
+}
+
 @media (max-width: 678px) {
   .auth-page__container {
     display: flex;

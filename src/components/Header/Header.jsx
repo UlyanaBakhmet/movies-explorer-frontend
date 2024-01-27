@@ -7,7 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import closeIcon from "../../images/closeButton.svg";
 import burgerMenu from "../../images/burger.svg";
 
-export default function Header ({ isLoggedIn }) {
+export default function Header({ isLoggedIn }) {
   const location = useLocation();
   const [toggleMenu, setToggleMenu] = useState(false);
 

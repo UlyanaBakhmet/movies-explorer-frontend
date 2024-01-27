@@ -1,21 +1,33 @@
-import { Helmet } from 'react-helmet';
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import AuthPage from "../AuthPage/AuthPage";
 import AuthInput from "../AuthInput/AuthInput";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { nameValidator, emailValidator } from "../../utils/validator";
 import "./Register.css";
 
-export default function Register() {
-  const navigate = useNavigate();
+export default function Register({ handleRegister }) {
+
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormAndValidation();
+
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    navigate("/signin", { replace: true });
+    handleRegister({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
   }
 
   return (
     <section className="register">
-
       <Helmet>
         <title>Регистрация</title>
       </Helmet>
@@ -24,7 +36,8 @@ export default function Register() {
         title="Добро пожаловать!"
         name="register"
         onSubmit={handleSubmit}
-        buttonText="Зарегистрироваться"
+        buttonText={"Зарегистрироваться"}
+        isDisabled={!isValid ? true : ""}
       >
         <AuthInput
           labelClassName="register__auth-page-label"
@@ -33,11 +46,21 @@ export default function Register() {
           name="name"
           id="name"
           inputClassName="register__auth-page-input"
-          minLength="2"
-          maxLength="30"
+          minLength={2}
+          maxLength={30}
           required
           placeholder="Виталий"
+          value={values.name || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`register__auth-error ${
+            isValid ? "" : "register__auth-error register__auth-error_active"
+          }`}
+        >
+          {nameValidator(values.name).error}
+        </span>
+
         <AuthInput
           labelClassName="register__auth-page-label"
           labelText="E-mail"
@@ -47,7 +70,17 @@ export default function Register() {
           inputClassName="register__auth-page-input"
           required
           placeholder="pochta@yandex.ru"
+          value={values.email || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`register__auth-error ${
+            isValid ? "" : "register__auth-error register__auth-error_active"
+          }`}
+        >
+          {emailValidator(values.email).error}
+        </span>
+
         <AuthInput
           labelClassName="register__auth-page-label"
           labelText="Пароль"
@@ -55,11 +88,20 @@ export default function Register() {
           name="password"
           id="password"
           inputClassName="register__auth-page-input"
-          minLength="2"
-          maxLength="30"
+          minLength={5}
+          maxLength={30}
           required
           placeholder="***************"
+          value={values.password || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`register__auth-error ${
+            isValid ? "" : "register__auth-error register__auth-error_active"
+          }`}
+        >
+          {errors.password}
+        </span>
       </AuthPage>
       <div className="register__login">
         <p className="register__login-text">Уже зарегистрированы?</p>

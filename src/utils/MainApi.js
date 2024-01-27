@@ -10,20 +10,6 @@ class MainApi {
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
-  addMovie(movieData) {
-    const token = localStorage.getItem("token");
-    return fetch(`${this._baseUrl}/movies`, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...movieData,
-      }),
-    }).then((res) => this._checkResult(res));
-  }
-
   deleteMovie(movieId) {
     const token = localStorage.getItem("token");
     return fetch(`${this._baseUrl}/movies/${movieId}`, {

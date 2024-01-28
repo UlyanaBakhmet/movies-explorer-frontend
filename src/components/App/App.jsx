@@ -166,7 +166,7 @@ export default function App() {
       .catch((err) => {
         console.log(err);
         setPopupTitle("Что-то пошло не так! Попробуйте еще раз.");
-        `Ошибка сервера ${err}`;
+        `Возникла ошибка ${err}`;
       })
       .finally(() => {
         preloader(false);
@@ -174,7 +174,7 @@ export default function App() {
   }
 
   //сохранение фильма
-  const handleSaveMovie = (movie, setIsSaved) => {
+  function handleSaveMovie(movie, setIsSaved) {
     const objMovie = {
       country: movie.country,
       director: movie.director,
@@ -197,12 +197,12 @@ export default function App() {
         setIsSaved(true);
       })
       .catch((err) => {
-        setPopupTitle(`Ошибка сервера ${err}`);
+        setPopupTitle(`Возникла ошибка ${err}`);
       });
-  };
+  }
 
   //удаление фильма
-  const handleDeleteMovie = (movie, setIsSaved) => {
+  function handleDeleteMovie(movie, setIsSaved) {
     mainApi
       .deleteMovie(movie._id)
       .then(() => {
@@ -214,9 +214,9 @@ export default function App() {
         setIsSaved(false);
       })
       .catch((err) => {
-        setPopupTitle(`Ошибка сервера ${err}`);
+        setPopupTitle(`Возникла ошибка ${err}`);
       });
-  };
+  }
 
   function handleSignOut() {
     setIsLoggedIn(false);

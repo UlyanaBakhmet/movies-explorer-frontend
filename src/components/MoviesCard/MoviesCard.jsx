@@ -27,9 +27,9 @@ export default function MoviesCard({
     return hours ? `${hours}ч ${minutes}м` : `${minutes}м`;
   }
 
-  const handleToogleClick = (evt) => {
+  function handleToogleClick(evt) {
     handleToogleButton(evt, movie, setIsSaved, isSaved);
-  };
+  }
 
 
   return (

@@ -67,10 +67,10 @@ export default function SavedMovies({ savedMovies, handleDeleteMovie }) {
     [savedMovies]
   );
 
-  const handleToogleClick = (evt, movie, setIsSaved) => {
+  function handleToogleClick(evt, movie, setIsSaved) {
     evt.preventDefault();
     handleDeleteMovie(movie, setIsSaved);
-  };
+  }
 
   return (
     <main className="movies">

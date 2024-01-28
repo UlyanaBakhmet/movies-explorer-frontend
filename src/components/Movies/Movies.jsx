@@ -86,14 +86,14 @@ export default function Movies({
     [savedMovies]
   );
 
-  const handleSaveTextInInput = (setValues) => {
+  function handleSaveTextInInput(setValues) {
     if (localStorage.getItem("searchInputValue") !== null) {
       setValues((prev) => ({
         ...prev,
         movie: localStorage.getItem("searchInputValue"),
       }));
     }
-  };
+  }
 
   function handleToogleButton(evt, movie, setIsSaved, isSaved) {
     evt.preventDefault();

@@ -85,6 +85,6 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: "http://localhost:3000",
-  // baseUrl: "https://api.bakhmet-movies.nomoredomainsmonster.ru",
+  // baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.bakhmet-movies.nomoredomainsmonster.ru",
 });

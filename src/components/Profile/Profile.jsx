@@ -10,16 +10,46 @@ export default function Profile({
   handleSignOut,
   onUpdateUser,
   serverError,
+  setServerError,
   setOkMessage,
 }) {
+  const { values, handleChange, setValues, isValid, setIsValid } =
+    useFormAndValidation();
   const currentUserValues = useContext(CurrentUserContext);
-  const { values, handleChange, setValues } = useFormAndValidation();
+  const isCurrentUserValues =
+    (values.name === currentUserValues.name &&
+      values.email === currentUserValues.email) ||
+    !nameValidator(values.name).activeButton ||
+    !emailValidator(values.email).activeButton;
+
   const [showSuccessMessage, setShowSuccessMessage] = React.useState(false);
   const [showSaveButton, setShowSaveButton] = React.useState(false);
 
+  React.useEffect(() => {
+    setOkMessage("");
+  }, [setServerError, setOkMessage]);
+
+  React.useEffect(() => {
+    setValues({
+      name: currentUserValues.name,
+      email: currentUserValues.email,
+    });
+    setIsValid(true);
+  }, [currentUserValues, setValues]);
+
+  React.useEffect(() => {
+    if (isCurrentUserValues) {
+      setIsValid(false);
+    }
+  });
+
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateUser(values);
+    if (!isCurrentUserValues) {
+      onUpdateUser({ name: values.name, email: values.email });
+    } else {
+      return;
+    }
     setShowSaveButton(false);
     setShowSuccessMessage(true);
   }
@@ -28,11 +58,8 @@ export default function Profile({
     evt.preventDefault();
     setShowSaveButton(true);
     setShowSuccessMessage(false);
+    setOkMessage("");
   }
-
-  React.useEffect(() => {
-    setValues(currentUserValues);
-  }, [currentUserValues, setValues]);
 
   return (
     <section className="profile">
@@ -40,7 +67,12 @@ export default function Profile({
         <title>Аккаунт</title>
       </Helmet>
       <h1 className="profile__header">Привет, {currentUserValues.name}!</h1>
-      <form className="profile__form" onSubmit={handleSubmit} noValidate>
+      <form
+        className={`profile__form ${!isValid}`}
+        onSubmit={handleSubmit}
+        id="profile-form"
+        noValidate
+      >
         <fieldset className="profile__fieldset">
           <label htmlFor="name" className="profile__label">
             Имя
@@ -111,12 +143,7 @@ export default function Profile({
               type="submit"
               onSubmit={handleSubmit}
               className={`profile__save ${
-                (values.name === currentUserValues.name &&
-                  values.email === currentUserValues.email) ||
-                !nameValidator(values.name).activeButton ||
-                !emailValidator(values.email).activeButton
-                  ? "profile__save_disabled"
-                  : ""
+                !isValid ? "profile__save_disabled" : ""
               }`}
             >
               Сохранить

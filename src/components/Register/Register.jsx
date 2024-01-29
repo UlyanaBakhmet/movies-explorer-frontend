@@ -10,7 +10,7 @@ import "./Register.css";
 
 export default function Register({ handleRegister }) {
 
-  const { values, errors, isValid, handleChange, resetForm } =
+  const { values, errors, isValid, handleChange, handleChangeEmail, resetForm } =
     useFormAndValidation();
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Register({ handleRegister }) {
           required
           placeholder="pochta@yandex.ru"
           value={values.email || ""}
-          onChange={handleChange}
+          onChange={handleChangeEmail}
         />
         <span
           className={`register__auth-error ${

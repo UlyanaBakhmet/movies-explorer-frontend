@@ -26,16 +26,16 @@ export default function App() {
   const { pathname } = useLocation();
   const [currentUserValues, setCurrentUserValues] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [okMessage, setOkMessage] = useState("");
-  const [ServerError, setServerError] = useState({});
+  const [okMessage, setOkMessage] = useState(false);
+  const [serverError, setServerError] = useState("");
   const [infoPopup, setInfoPopup] = useState(false);
   const [popupImage, setPopupImage] = useState("");
   const [popupTitle, setPopupTitle] = useState("");
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+
   const navigate = useNavigate();
   const handleError = (err) => console.error(`Возникла ошибка ${err}`);
-
   const headerRoutes = ["/", "/movies", "/saved-movies", "/profile"].includes(
     pathname
   );
@@ -83,14 +83,9 @@ export default function App() {
         handleLogin({ email: email, password: password });
       })
       .catch((err) => {
-        if (err === "409 Conflict") {
-          setPopupImage(error);
-          setPopupTitle("Что-то пошло не так! Попробуйте еще раз.");
-        } else {
-          setPopupImage(error);
-          setPopupTitle("Такой пользователь уже сущетсвует.");
-          handleError(err);
-        }
+        setPopupImage(error);
+        setPopupTitle("Ошибка авторизации! Попробуйте ещё раз.");
+        console.error(`Возникла ошибка ${err}`);
       })
       .finally(handleInfoTooltip);
   }
@@ -233,24 +228,28 @@ export default function App() {
             <Routes>
               <Route path="/" index={true} element={<Main />} />
 
-              <Route
-                path="/signup"
-                element={
-                  <Register
-                    isLoading={isLoading}
-                    handleRegister={handleRegister}
-                    isLoggedIn={isLoggedIn}
-                    ServerError={ServerError}
-                  />
-                }
-              />
+              {!isLoggedIn && (
+                <Route
+                  path="/signup"
+                  element={
+                    <Register
+                      isLoading={isLoading}
+                      handleRegister={handleRegister}
+                      isLoggedIn={isLoggedIn}
+                      serverError={serverError}
+                    />
+                  }
+                />
+              )}
 
-              <Route
-                path="/signin"
-                element={
-                  <Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} />
-                }
-              />
+              {!isLoggedIn && (
+                <Route
+                  path="/signin"
+                  element={
+                    <Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} />
+                  }
+                />
+              )}
 
               <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
                 <Route
@@ -288,6 +287,7 @@ export default function App() {
                       onUpdateUser={handleUpdateUser}
                       setOkMessage={setOkMessage}
                       okMessage={okMessage}
+                      serverError={serverError}
                     />
                   }
                 />

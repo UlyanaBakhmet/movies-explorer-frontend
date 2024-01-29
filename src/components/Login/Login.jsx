@@ -9,7 +9,7 @@ import { emailValidator } from "../../utils/validator";
 import "./Login.css";
 
 export default function Login({ handleLogin }) {
-  const { values, errors, isValid, handleChange, resetForm } =
+  const { values, errors, isValid, handleChange, handleChangeEmail, resetForm } =
     useFormAndValidation();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Login({ handleLogin }) {
           required
           placeholder="pochta@yandex.ru"
           value={values.email || ""}
-          onChange={handleChange}
+          onChange={handleChangeEmail}
         />
         <span
           className={`login__error ${

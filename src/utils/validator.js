@@ -29,9 +29,9 @@ export const emailValidator = (email) => {
 
 export const nameValidator = (name) => {
   if (name !== undefined) {
-    if (name.length === 0) {
+    if (name.length === 1) {
       return {
-        error: 'Это поле обязательное для заполнения!',
+        error: 'Это поле обязательное для заполнения! Должно быть минимум 2 символа!',
         activeButton: false,
       };
     } else if (regExpName.test(name.toLowerCase())) {

@@ -12,7 +12,7 @@ export default function SavedMovies({ savedMovies, handleDeleteMovie }) {
   useEffect(() => {
     if (localStorage.getItem("isShortsSavedMovies") !== null) {
       if (localStorage.getItem("isShortsSavedMovies") === "true") {
-        setIsShortsSavedMovies(true);
+        setIsShortsSavedMovies(false);
       } else {
         setIsShortsSavedMovies(false);
       }

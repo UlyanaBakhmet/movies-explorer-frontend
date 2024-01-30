@@ -9,9 +9,9 @@ import "./Profile.css";
 export default function Profile({
   handleSignOut,
   onUpdateUser,
-  serverError,
   setServerError,
   setOkMessage,
+  updateProfile,
 }) {
   const { values, handleChange, setValues, isValid, setIsValid } =
     useFormAndValidation();
@@ -22,7 +22,6 @@ export default function Profile({
     !nameValidator(values.name).activeButton ||
     !emailValidator(values.email).activeButton;
 
-  const [showSuccessMessage, setShowSuccessMessage] = React.useState(false);
   const [showSaveButton, setShowSaveButton] = React.useState(false);
 
   React.useEffect(() => {
@@ -51,13 +50,11 @@ export default function Profile({
       return;
     }
     setShowSaveButton(false);
-    setShowSuccessMessage(true);
   }
 
   function handleShowSaveButton(evt) {
     evt.preventDefault();
     setShowSaveButton(true);
-    setShowSuccessMessage(false);
     setOkMessage("");
   }
 
@@ -118,26 +115,18 @@ export default function Profile({
         <span className={`profile__input-error profile__input-error_active`}>
           {emailValidator(values.email).error}
         </span>
-
         <div className="profile__buttons-cover">
-          {setOkMessage ? (
+          {updateProfile && (
             <span
-              className={`profile__success-message ${
-                showSuccessMessage ? "" : "profile__success-message_disabled"
+              className={`profile__update-message ${
+                updateProfile === "success" ? "success" : "error"
               }`}
             >
-              Обновление данных прошло успешно!
-            </span>
-          ) : (
-            <span
-              className={`profile__error-text ${
-                serverError ? "" : "profile__error-text_disabled"
-              }`}
-            >
-              При обновлении профиля произошла ошибка.
+              {updateProfile === "success"
+                ? "Профиль успешно обновлен"
+                : "Ошибка при обновлении профиля!!!"}
             </span>
           )}
-
           {showSaveButton ? (
             <button
               type="submit"

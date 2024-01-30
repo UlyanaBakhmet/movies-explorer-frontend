@@ -77,6 +77,14 @@
   opacity: 1;
 }
 
+.profile__update-message {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: normal;
+  color: #00800b;
+  text-align: center;
+}
+
 .profile__register {
   font-weight: 400;
   font-size: 13px;

@@ -7,7 +7,7 @@ export default function SearchForm({
   handleSaveTextInInput,
   isShortMovie,
   setIsShortMovie,
-  isSavedMovies,
+  isSavedMovies
 }) {
   const inputMovie = useRef();
   const [values, setValues] = useState({ movie: "" });

@@ -8,7 +8,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { emailValidator } from "../../utils/validator";
 import "./Login.css";
 
-export default function Login({ handleLogin }) {
+  export default function Login({ handleLogin, isLoading }) {
   const { values, errors, isValid, handleChange, handleChangeEmail, resetForm } =
     useFormAndValidation();
 
@@ -21,7 +21,7 @@ export default function Login({ handleLogin }) {
     handleLogin({
       email: values.email,
       password: values.password,
-    });
+    })
   }
 
   return (
@@ -31,11 +31,12 @@ export default function Login({ handleLogin }) {
       </Helmet>
 
       <AuthPage
+      isLoading={isLoading}
         title="Рады видеть!"
         name="login"
         buttonText={"Войти"}
         onSubmit={handleSubmit}
-        isDisabled={!isValid ? true : ""}
+        isDisabled={!isValid || isLoading}
       >
         <AuthInput
           labelClassName="auth-page__label"
@@ -73,7 +74,7 @@ export default function Login({ handleLogin }) {
         />
         <span
           className={`login__error ${
-            isValid ? "" : "login__error login__error_active"
+           isValid ? "" : "login__error login__error_active"
           }`}
         >
           {errors.password}

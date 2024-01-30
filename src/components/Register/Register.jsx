@@ -8,7 +8,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { nameValidator, emailValidator } from "../../utils/validator";
 import "./Register.css";
 
-export default function Register({ handleRegister }) {
+export default function Register({ handleRegister, isLoading }) {
 
   const { values, errors, isValid, handleChange, handleChangeEmail, resetForm } =
     useFormAndValidation();
@@ -33,11 +33,12 @@ export default function Register({ handleRegister }) {
       </Helmet>
 
       <AuthPage
+        isLoading={isLoading}
         title="Добро пожаловать!"
         name="register"
         onSubmit={handleSubmit}
         buttonText={"Зарегистрироваться"}
-        isDisabled={!isValid ? true : ""}
+        isDisabled={!isValid || isLoading}
       >
         <AuthInput
           labelClassName="register__auth-page-label"

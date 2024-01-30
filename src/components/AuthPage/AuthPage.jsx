@@ -3,6 +3,7 @@ import Logo from "../Logo/Logo";
 import "./AuthPage.css";
 
 export default function AuthPage({
+  isLoading,
   title,
   name,
   children,
@@ -23,7 +24,7 @@ export default function AuthPage({
               isDisabled ? "auth-page__button_disabled" : ""
             }`}
             type="submit"
-            disabled={isDisabled}
+            disabled={isDisabled || isLoading }
           >
             {buttonText}{" "}
           </button>

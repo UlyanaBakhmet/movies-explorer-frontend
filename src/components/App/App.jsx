@@ -25,7 +25,6 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { pathname } = useLocation();
   const [currentUserValues, setCurrentUserValues] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const [okMessage, setOkMessage] = useState(false);
   const [serverError, setServerError] = useState("");
   const [infoPopup, setInfoPopup] = useState(false);
@@ -33,6 +32,8 @@ export default function App() {
   const [popupTitle, setPopupTitle] = useState("");
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [updateProfile, setUpdateProfile] = useState("");
 
   const navigate = useNavigate();
   const handleError = (err) => console.error(`Возникла ошибка ${err}`);
@@ -75,6 +76,7 @@ export default function App() {
 
   //регистрация
   function handleRegister({ name, email, password }) {
+    setIsLoading(true);
     auth
       .register({ name, email, password })
       .then(() => {
@@ -86,6 +88,7 @@ export default function App() {
         setPopupImage(error);
         setPopupTitle("Ошибка авторизации! Попробуйте ещё раз.");
         console.error(`Возникла ошибка ${err}`);
+        setIsLoading(false);
       })
       .finally(handleInfoTooltip);
   }
@@ -114,6 +117,7 @@ export default function App() {
           setPopupTitle("Ошибка авторизации! Неправильная почта или пароль.");
           handleError(err);
         }
+        setIsLoading(false);
       })
       .finally(handleInfoTooltip);
   }
@@ -126,12 +130,12 @@ export default function App() {
       .then((res) => {
         setCurrentUserValues(res);
         setTimeout(() => {
-          setOkMessage(true);
-        }, 3000);
+          setUpdateProfile("success");
+        });
       })
       .catch((err) => {
-        setServerError(err);
-        setOkMessage(false);
+        console.error("Ошибка при обновлении профиля!", err);
+        setUpdateProfile("error");
       });
   }
 
@@ -246,7 +250,11 @@ export default function App() {
                 <Route
                   path="/signin"
                   element={
-                    <Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} />
+                    <Login
+                      handleLogin={handleLogin}
+                      isLoggedIn={isLoggedIn}
+                      isLoading={isLoading}
+                    />
                   }
                 />
               )}
@@ -288,6 +296,8 @@ export default function App() {
                       setOkMessage={setOkMessage}
                       okMessage={okMessage}
                       serverError={serverError}
+                      setServerError={setServerError}
+                      updateProfile={updateProfile}
                     />
                   }
                 />

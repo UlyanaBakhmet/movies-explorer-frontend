@@ -130,12 +130,12 @@ export default function App() {
       .then((res) => {
         setCurrentUserValues(res);
         setTimeout(() => {
-          setUpdateProfile("success");
+          setOkMessage("Профиль успешно обновлён!");
         });
       })
       .catch((err) => {
         console.error("Ошибка при обновлении профиля!", err);
-        setUpdateProfile("error");
+        setUpdateProfile("При обновлении профиля произошла ошибка!");
       });
   }
 
@@ -298,6 +298,7 @@ export default function App() {
                       serverError={serverError}
                       setServerError={setServerError}
                       updateProfile={updateProfile}
+                      setUpdateProfile={setUpdateProfile}
                     />
                   }
                 />

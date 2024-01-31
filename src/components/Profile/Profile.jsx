@@ -9,9 +9,11 @@ import "./Profile.css";
 export default function Profile({
   handleSignOut,
   onUpdateUser,
-  setServerError,
   setOkMessage,
   updateProfile,
+  setUpdateProfile,
+  okMessage,
+  isLoading
 }) {
   const { values, handleChange, setValues, isValid, setIsValid } =
     useFormAndValidation();
@@ -25,8 +27,9 @@ export default function Profile({
   const [showSaveButton, setShowSaveButton] = React.useState(false);
 
   React.useEffect(() => {
+    setUpdateProfile('');
     setOkMessage("");
-  }, [setServerError, setOkMessage]);
+}, [setUpdateProfile, setOkMessage]);
 
   React.useEffect(() => {
     setValues({
@@ -34,7 +37,7 @@ export default function Profile({
       email: currentUserValues.email,
     });
     setIsValid(true);
-  }, [currentUserValues, setValues]);
+}, [currentUserValues, setValues, setIsValid]);
 
   React.useEffect(() => {
     if (isCurrentUserValues) {
@@ -44,12 +47,15 @@ export default function Profile({
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setUpdateProfile('')
     if (!isCurrentUserValues) {
       onUpdateUser({ name: values.name, email: values.email });
     } else {
       return;
     }
+    if (!isLoading) {
     setShowSaveButton(false);
+    }
   }
 
   function handleShowSaveButton(evt) {
@@ -85,7 +91,7 @@ export default function Profile({
             defaultValue={currentUserValues.name}
             required
             onChange={handleChange}
-            disabled={!showSaveButton}
+            disabled={!showSaveButton && !updateProfile}
             placeholder="Ваше имя"
           />
         </fieldset>
@@ -108,7 +114,7 @@ export default function Profile({
             defaultValue={currentUserValues.email}
             required
             onChange={handleChange}
-            disabled={!showSaveButton}
+            disabled={!showSaveButton && !updateProfile}
             placeholder="Ваш e-mail"
           />
         </fieldset>
@@ -116,28 +122,29 @@ export default function Profile({
           {emailValidator(values.email).error}
         </span>
         <div className="profile__buttons-cover">
-          {updateProfile && (
+          {showSaveButton || isLoading || updateProfile ? (
+            <>
             <span
-              className={`profile__update-message ${
-                updateProfile === "success" ? "success" : "error"
-              }`}
-            >
-              {updateProfile === "success"
-                ? "Профиль успешно обновлен"
-                : "Ошибка при обновлении профиля!!!"}
+              className='profile__update-message profile__error-text'>
+                {updateProfile}
             </span>
-          )}
-          {showSaveButton ? (
             <button
               type="submit"
               onSubmit={handleSubmit}
+              disabled={!isValid || isLoading}
               className={`profile__save ${
-                !isValid ? "profile__save_disabled" : ""
+                !isValid || isLoading ? "profile__save_disabled" : ""
               }`}
             >
               Сохранить
             </button>
+          </>
           ) : (
+            <>
+            <span
+              className='profile__update-message profile__success-message'>
+                {okMessage}
+            </span>
             <button
               type="button"
               className="profile__register"
@@ -145,8 +152,8 @@ export default function Profile({
             >
               Редактировать
             </button>
+            </>
           )}
-
           <Link to="/" className="profile__exit" onClick={handleSignOut}>
             Выйти из аккаунта
           </Link>
